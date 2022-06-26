@@ -1,0 +1,55 @@
+version: "3"
+services:
+    mysql:
+        container_name: mysql
+        platform: linux/amd64
+        image: mysql:8.0
+        env_file:
+            - .env
+        volumes:
+            - ./.docker/mysql/data:/var/lib/mysql
+            - ./.docker/mysql/sql:/root/sql
+        ports:
+            - "3306:3306"
+        networks:
+            - app
+        tty: true
+        working_dir: /root/sql
+
+    elasticsearch:
+        container_name: elasticsearch
+        image: elasticsearch:8.2.3
+        environment:
+            discovery.type: single-node
+        expose:
+            - 9200
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        networks:
+            - app
+        tty: true
+
+    kibana:
+        container_name: kibana
+        image: kibana:8.2.3
+        depends_on:
+            - elasticsearch
+        ports:
+            - "5601:5601"
+        networks:
+            - app
+
+    embulk:
+        container_name: embulk
+        platform: linux/amd64
+        build: ./.docker/embulk
+        volumes:
+            - ./.docker/embulk/config:/root/config
+        networks:
+            - app
+        tty: true
+
+networks:
+    app:
+        driver: bridge

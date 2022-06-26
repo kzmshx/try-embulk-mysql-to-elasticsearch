@@ -1,0 +1,23 @@
+{
+  "name": "try-embulk-mysql-to-elasticsearch",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "eslint": "eslint './**/*.{js,ts,mjs,json}'",
+    "fix": "npm run prettier -- -w && npm run eslint -- --fix && npm run sort",
+    "lint": "npm run prettier -- -c && npm run eslint && npm run sort -- --check",
+    "prettier": "prettier './**/*.{js,ts,mjs,json}'",
+    "sort": "npx sort-package-json"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "prettier": "^2.7.1",
+    "unique-names-generator": "^4.7.1",
+    "zx": "^7.0.2"
+  }
+}

@@ -1,0 +1,6 @@
+.docker/mysql/data/
+.docker/mysql/sql/setup.sql
+.docker/mysql/tools/first_names.json
+.docker/mysql/tools/last_names.json
+.env
+node_modules/
