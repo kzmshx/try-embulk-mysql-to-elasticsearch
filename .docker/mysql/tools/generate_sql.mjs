@@ -83,7 +83,7 @@ const generateSQL = async () => {
     ])
 
     const tableName = "customer"
-    const dropTableQuery = `DROP TABLE if EXISTS ${tableName};`
+    const dropTableQuery = `DROP TABLE IF EXISTS ${tableName};`
     const createTableQuery = `CREATE TABLE ${tableName}
                                   (
                                       id bigint AUTO_INCREMENT NOT NULL,
@@ -94,8 +94,11 @@ const generateSQL = async () => {
                                       created_at datetime NOT NULL,
                                       updated_at datetime NOT NULL,
                                       PRIMARY KEY (id)
-                                  ) DEFAULT CHARACTER SET utf8mb4 COLLATE \`utf8mb4_bin\` ENGINE = InnoDB;`
-    const insertQueries = Array.from(Array(100).keys()).map(() => {
+                                  )
+    DEFAULT CHARACTER SET utf8mb4
+    COLLATE \`utf8mb4_bin\`
+    ENGINE = InnoDB;`
+    const insertQueries = Array.from(Array(10).keys()).map(() => {
         const records = Array.from(Array(100000).keys()).map(() => {
             return {
                 firstName: randomChoose(firstNameChoices),

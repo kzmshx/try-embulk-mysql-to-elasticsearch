@@ -1,0 +1,20 @@
+in:
+    type: mysql
+    host: "mysql"
+    port: "3306"
+    user: "test"
+    password: "pass"
+    database: "test"
+    #language=sql
+    query: |
+        SELECT *
+          FROM customer
+out:
+    type: elasticsearch
+    mode: insert
+    nodes:
+        -   host: "elasticsearch"
+            port: "9200"
+    index: "index-customer-20220614"
+    index_type: "customer"
+    id: id

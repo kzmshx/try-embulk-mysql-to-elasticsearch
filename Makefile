@@ -25,8 +25,8 @@ clean: down up
 login_mysql:
 	docker exec -it mysql bash
 
-.PHONY: setup_mysql
-setup_mysql:
+.PHONY: exec_mysql_setup_sql
+exec_mysql_setup_sql:
 	docker exec -it mysql bash -c 'mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} ${MYSQL_DATABASE} </root/sql/setup.sql'
 
 .PHONY: login_es
@@ -40,3 +40,7 @@ login_kibana:
 .PHONY: login_embulk
 login_embulk:
 	docker exec -it embulk sh
+
+.PHONY: exec_embulk_mysql_to_elasticsearch
+exec_embulk_mysql_to_elasticsearch:
+	docker exec -it embulk sh -c 'embulk run /root/config/mysql_to_elasticsearch.yml'
