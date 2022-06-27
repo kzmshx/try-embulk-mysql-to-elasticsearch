@@ -1,0 +1,33 @@
+{
+  "mappings": {
+    "_source": {
+      "enabled": true
+    },
+    "_all": {
+      "enabled": false
+    },
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "first_name": {
+        "type": "keyword"
+      },
+      "last_name": {
+        "type": "keyword"
+      },
+      "gender": {
+        "type": "byte"
+      },
+      "birth_date": {
+        "type": "date"
+      },
+      "created_at": {
+        "type": "date"
+      },
+      "updated_at": {
+        "type": "date"
+      }
+    }
+  }
+}

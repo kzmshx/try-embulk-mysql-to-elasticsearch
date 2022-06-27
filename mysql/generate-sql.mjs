@@ -4,7 +4,7 @@ import { fetch } from "zx"
 
 const firstNamesJsonPath = __dirname + "/first_names.json"
 const lastNamesJsonPath = __dirname + "/last_names.json"
-const sqlPath = __dirname + "/../sql/setup.sql"
+const sqlPath = __dirname + "/src/setup.sql"
 
 /**
  * @template T
@@ -101,8 +101,12 @@ const generateSQL = async () => {
     const insertQueries = Array.from(Array(10).keys()).map(() => {
         const records = Array.from(Array(100000).keys()).map(() => {
             return {
-                firstName: randomChoose(firstNameChoices),
-                lastName: randomChoose(lastNameChoices),
+                firstName: randomChoose(firstNameChoices)
+                    .toLocaleLowerCase()
+                    .replace(/^./, (s) => s.toUpperCase()),
+                lastName: randomChoose(lastNameChoices)
+                    .toLocaleLowerCase()
+                    .replace(/^./, (s) => s.toUpperCase()),
                 gender: randomChoose([1, 2]),
                 birthDate: formatDate(randomDate(new Date(1980, 1, 1), new Date(2022, 6, 14)), "Y-m-d"),
                 createdAt: "2022-06-14 20:30:00",

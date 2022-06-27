@@ -9,17 +9,17 @@ services:
             - .env
         volumes:
             - ./.docker/mysql/data:/var/lib/mysql
-            - ./.docker/mysql/sql:/root/sql
+            - ./mysql/src:/root/src
         ports:
             - "3306:3306"
         networks:
             - app
         tty: true
-        working_dir: /root/sql
+        working_dir: /root/src
 
     elasticsearch:
         container_name: elasticsearch
-        image: elasticsearch:8.2.3
+        image: elasticsearch:7.17.4
         environment:
             xpack.security.enabled: false
             discovery.type: single-node
@@ -31,7 +31,7 @@ services:
 
     kibana:
         container_name: kibana
-        image: kibana:8.2.3
+        image: kibana:7.17.4
         environment:
             ELASTICSEARCH_HOSTS: http://elasticsearch:9200
         depends_on:
@@ -46,10 +46,11 @@ services:
         platform: linux/amd64
         build: ./.docker/embulk
         volumes:
-            - ./.docker/embulk/config:/root/config
+            - ./embulk/src:/root/src
         networks:
             - app
         tty: true
+        working_dir: /root/src
 
 networks:
     app:

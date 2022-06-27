@@ -5,10 +5,8 @@ in:
     user: "test"
     password: "pass"
     database: "test"
-    #language=sql
-    query: |
-        SELECT *
-          FROM customer
+    query: SELECT * FROM customer
+
 out:
     type: elasticsearch
     mode: insert

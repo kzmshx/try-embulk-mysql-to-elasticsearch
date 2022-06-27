@@ -27,7 +27,7 @@ login_mysql:
 
 .PHONY: mysql_setup_data
 mysql_setup_data:
-	docker exec -it mysql bash -c 'mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} ${MYSQL_DATABASE} </root/sql/setup.sql'
+	docker exec -it mysql bash -c 'mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} ${MYSQL_DATABASE} </root/src/setup.sql'
 
 .PHONY: login_elasticsearch
 login_elasticsearch:
@@ -43,4 +43,4 @@ login_embulk:
 
 .PHONY: embulk_run_sync
 embulk_run_sync:
-	docker exec -it embulk sh -c 'embulk run /root/config/mysql_to_elasticsearch.yml'
+	docker exec -it embulk sh -c 'embulk run /root/src/mysql_to_elasticsearch.yml'
